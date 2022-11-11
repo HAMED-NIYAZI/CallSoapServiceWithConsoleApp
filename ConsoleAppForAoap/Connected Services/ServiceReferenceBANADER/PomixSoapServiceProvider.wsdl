@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:tns="http://tempuri.org/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="PomixSoapServiceProvider" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Massan.Models.Core" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/Massan.Models" />
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xs:element name="Invoke">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Massan.Models.Core" minOccurs="1" name="model" nillable="true" type="q1:ApiRequestModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="InvokeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Massan.Models.Core" minOccurs="1" name="InvokeResult" nillable="true" type="q2:ApiResponseModel" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Massan.Models.Core" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Massan.Models.Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:complexType name="ApiRequestModel">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="Credential" nillable="true" type="tns:CallerCredential" />
+          <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfApiServiceParameterModel" />
+          <xs:element minOccurs="1" name="Service" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ApiRequestModel" nillable="true" type="tns:ApiRequestModel" />
+      <xs:complexType name="CallerCredential">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" name="Password" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CallerCredential" nillable="true" type="tns:CallerCredential" />
+      <xs:complexType name="ArrayOfApiServiceParameterModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ApiServiceParameterModel" nillable="true" type="tns:ApiServiceParameterModel" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfApiServiceParameterModel" nillable="true" type="tns:ArrayOfApiServiceParameterModel" />
+      <xs:complexType name="ApiServiceParameterModel">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="ParameterName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="1" name="ParameterValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ApiServiceParameterModel" nillable="true" type="tns:ApiServiceParameterModel" />
+      <xs:complexType name="ApiResponseModel">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="Cookies" nillable="true" type="q1:ArrayOfKeyValuePairOfStringString" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DigitalSignature" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Massan.Models" name="Error" nillable="true" type="q2:InvokeErrors" />
+          <xs:element minOccurs="0" name="ErrorDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
+          <xs:element minOccurs="0" name="RequestDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RequestId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ResponseDate" type="xs:dateTime" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="ResponseHeaders" nillable="true" type="q3:ArrayOfKeyValuePairOfStringString" />
+          <xs:element minOccurs="0" name="ResponseStatusCode" type="xs:int" />
+          <xs:element minOccurs="0" name="ResponseText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsedQuotaStats" nillable="true" type="tns:UsedQuotaStats" />
+          <xs:element minOccurs="0" name="WorkerDebugLog" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ApiResponseModel" nillable="true" type="tns:ApiResponseModel" />
+      <xs:complexType name="UsedQuotaStats">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DailyUsed" type="xs:int" />
+          <xs:element minOccurs="0" name="HourlyUsed" type="xs:int" />
+          <xs:element minOccurs="0" name="MinutelyUsed" type="xs:int" />
+          <xs:element minOccurs="0" name="MonthlyUsed" type="xs:int" />
+          <xs:element minOccurs="0" name="SecondlyUsed" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UsedQuotaStats" nillable="true" type="tns:UsedQuotaStats" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Massan.Models" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Massan.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:simpleType name="InvokeErrors">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ConsumerIsDisabled" />
+          <xs:enumeration value="ConsumerNotFound" />
+          <xs:enumeration value="ConsumerInvalidSecret" />
+          <xs:enumeration value="ConsumerNotAccess" />
+          <xs:enumeration value="ConsumerExceedQuota" />
+          <xs:enumeration value="ConsumerUnknownQuota" />
+          <xs:enumeration value="ServiceNotFound" />
+          <xs:enumeration value="ServiceDisabled" />
+          <xs:enumeration value="ConsumerInvalidIp" />
+          <xs:enumeration value="RateLimitExceeded" />
+          <xs:enumeration value="DosAttackRecognized" />
+          <xs:enumeration value="BlackListIp" />
+          <xs:enumeration value="MaxResponseLengthReached" />
+          <xs:enumeration value="ParameterMissed" />
+          <xs:enumeration value="ParameterTypeMismatched" />
+          <xs:enumeration value="Timeout" />
+          <xs:enumeration value="BadRequest" />
+          <xs:enumeration value="WorkerConnectToServiceError" />
+          <xs:enumeration value="NullResponse" />
+          <xs:enumeration value="UnhandledError" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="InvokeErrors" type="tns:InvokeErrors" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:complexType name="ArrayOfKeyValuePairOfStringString">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfStringString" type="tns:KeyValuePairOfStringString" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKeyValuePairOfStringString" nillable="true" type="tns:ArrayOfKeyValuePairOfStringString" />
+      <xs:complexType name="KeyValuePairOfStringString">
+        <xs:annotation>
+          <xs:appinfo>
+            <ser:IsValueType>true</ser:IsValueType>
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="KeyValuePairOfStringString" nillable="true" type="tns:KeyValuePairOfStringString" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xs:complexType name="ArrayOfString">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="MassanSoapServiceProvider_Invoke_InputMessage">
+    <wsdl:part name="parameters" element="tns:Invoke" />
+  </wsdl:message>
+  <wsdl:message name="MassanSoapServiceProvider_Invoke_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvokeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MassanSoapServiceProvider">
+    <wsdl:operation name="Invoke">
+      <wsdl:input wsam:Action="http://tempuri.org/MassanSoapServiceProvider/Invoke" message="tns:MassanSoapServiceProvider_Invoke_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/MassanSoapServiceProvider/InvokeResponse" message="tns:MassanSoapServiceProvider_Invoke_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpsBinding" type="tns:MassanSoapServiceProvider">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Invoke">
+      <soap:operation soapAction="http://tempuri.org/MassanSoapServiceProvider/Invoke" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MassanSoapServiceProvider">
+    <wsdl:port name="BasicHttpsBinding" binding="tns:BasicHttpsBinding">
+      <soap:address location="https://core.pomix.pmo.ir/soap/Invoke" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
